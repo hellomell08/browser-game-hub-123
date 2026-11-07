@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Browser Game Hub</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --background: #10131d;
+      --panel: #1b2030;
+      --text: #f4f6ff;
+      --muted: #b7bfd6;
+      --accent: #8b7bff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 32px 18px;
+      background: radial-gradient(ellipse at top, #25244a, var(--background) 55%);
+      color: var(--text);
+      font: 16px/1.5 system-ui, sans-serif;
+    }
+
+    main { max-width: 1000px; margin: auto; }
+
+    h1 { margin-bottom: 4px; font-size: clamp(2rem, 6vw, 3rem); }
+    .intro, .note { color: var(--muted); }
+
+    .controls {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 24px 0;
+    }
+
+    input, select {
+      min-height: 44px;
+      padding: 10px 12px;
+      border: 1px solid #454c68;
+      border-radius: 10px;
+      background: var(--panel);
+      color: var(--text);
+      font: inherit;
+    }
+
+    input { flex: 1; min-width: 200px; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      display: block;
+      padding: 18px;
+      border: 1px solid #343a52;
+      border-radius: 14px;
+      background: var(--panel);
+      color: var(--text);
+      text-decoration: none;
+      transition: transform .15s ease, border-color .15s ease;
+    }
+
+    .card:hover, .card:focus-visible {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      outline: none;
+    }
+
+    .card strong { display: block; font-size: 1.08rem; }
+    .card span { color: var(--muted); font-size: .92rem; }
+    .tag { margin-top: 12px; color: #c4bbff !important; }
+    .note { margin-top: 28px; font-size: .9rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>🎮 Browser Game Hub</h1>
+    <p class="intro">Pick a game or explore a site with lots of games. No downloads needed for most options.</p>
+
+    <div class="controls">
+      <input id="search" type="search" placeholder="Search games…" aria-label="Search games">
+      <select id="category" aria-label="Filter by category">
+        <option value="all">All categories</option>
+        <option value="arcade">Arcade</option>
+        <option value="puzzle">Puzzle</option>
+        <option value="multiplayer">Multiplayer</option>
+        <option value="collections">Game collections</option>
+      </select>
+    </div>
+
+    <section class="grid" id="games" aria-label="Games">
+      <a class="card" data-category="collections" href="https://poki.com/" target="_blank" rel="noopener noreferrer">
+        <strong>🌟 Poki</strong><span>Large collection of free browser games.</span><span class="tag">Game collection</span>
+      </a>
+      <a class="card" data-category="collections" href="https://www.crazygames.com/" target="_blank" rel="noopener noreferrer">
+        <strong>🕹️ CrazyGames</strong><span>Arcade, racing, puzzle, and multiplayer games.</span><span class="tag">Game collection</span>
+      </a>
+      <a class="card" data-category="collections" href="https://www.coolmathgames.com/" target="_blank" rel="noopener noreferrer">
+        <strong>🧠 Coolmath Games</strong><span>Puzzles, strategy, and casual games.</span><span class="tag">Game collection</span>
+      </a>
+      <a class="card" data-category="collections" href="https://itch.io/games/html5" target="_blank" rel="noopener noreferrer">
+        <strong>🎨 itch.io HTML5 Games</strong><span>Independent games that run in a web browser.</span><span class="tag">Game collection</span>
+      </a>
+      <a class="card" data-category="collections" href="https://scratch.mit.edu/explore/projects/games/" target="_blank" rel="noopener noreferrer">
+        <strong>🐱 Scratch Games</strong><span>Play games made by the Scratch community.</span><span class="tag">Game collection</span>
+      </a>
+
+      <a class="card" data-category="puzzle" href="https://play2048.co/" target="_blank" rel="noopener noreferrer">
+        <strong>🔢 2048</strong><span>Slide tiles and combine matching numbers.</span><span class="tag">Puzzle</span>
+      </a>
+      <a class="card" data-category="puzzle" href="https://www.chess.com/play" target="_blank" rel="noopener noreferrer">
+        <strong>♟️ Chess.com</strong><span>Play chess against people or a computer.</span><span class="tag">Puzzle · Strategy</span>
+      </a>
+      <a class="card" data-category="puzzle" href="https://lichess.org/" target="_blank" rel="noopener noreferrer">
+        <strong>♜ Lichess</strong><span>Free chess games, puzzles, and practice.</span><span class="tag">Puzzle · Strategy</span>
+      </a>
+      <a class="card" data-category="puzzle" href="https://sudoku.com/" target="_blank" rel="noopener noreferrer">
+        <strong>🧩 Sudoku</strong><span>Play Sudoku at different difficulty levels.</span><span class="tag">Puzzle</span>
+      </a>
+      <a class="card" data-category="puzzle" href="https://littlealchemy2.com/" target="_blank" rel="noopener noreferrer">
+        <strong>⚗️ Little Alchemy 2</strong><span>Combine items to discover new things.</span><span class="tag">Puzzle</span>
+      </a>
+
+      <a class="card" data-category="arcade" href="https://orteil.dashnet.org/cookieclicker/" target="_blank" rel="noopener noreferrer">
+        <strong>🍪 Cookie Clicker</strong><span>Build a giant cookie-baking operation.</span><span class="tag">Arcade · Idle</span>
+      </a>
+      <a class="card" data-category="arcade" href="https://slither.io/" target="_blank" rel="noopener noreferrer">
+        <strong>🐍 Slither.io</strong><span>Grow your snake and avoid other players.</span><span class="tag">Arcade · Multiplayer</span>
+      </a>
+      <a class="card" data-category="arcade" href="https://agar.io/" target="_blank" rel="noopener noreferrer">
+        <strong>🟠 Agar.io</strong><span>Grow your cell and navigate the arena.</span><span class="tag">Arcade · Multiplayer</span>
+      </a>
+      <a class="card" data-category="arcade" href="https://tetris.com/play-tetris" target="_blank" rel="noopener noreferrer">
+        <strong>🟪 Tetris</strong><span>Fit falling blocks together and clear lines.</span><span class="tag">Arcade · Puzzle</span>
+      </a>
+
+      <a class="card" data-category="multiplayer" href="https://lichess.org/" target="_blank" rel="noopener noreferrer">
+        <strong>🌍 Play Chess Online</strong><span>Challenge friends or find an online opponent.</span><span class="tag">Multiplayer</span>
+      </a>
+      <a class="card" data-category="multiplayer" href="https://shellshock.io/" target="_blank" rel="noopener noreferrer">
+        <strong>🥚 Shell Shockers</strong><span>Online egg-themed action game.</span><span class="tag">Multiplayer</span>
+      </a>
+    </section>
+
+    <p class="note">Some sites may show ads, require an account, or be blocked by a school or organization’s network. Use sites and games that are allowed on your network.</p>
+  </main>
+
+  <script>
+    const search = document.getElementById("search");
+    const category = document.getElementById("category");
+    const cards = [...document.querySelectorAll(".card")];
+
+    function filterGames() {
+      const phrase = search.value.trim().toLowerCase();
+      const selectedCategory = category.value;
+
+      for (const card of cards) {
+        const matchesText = card.textContent.toLowerCase().includes(phrase);
+        const matchesCategory =
+          selectedCategory === "all" ||
+          card.dataset.category === selectedCategory;
+
+        card.hidden = !(matchesText && matchesCategory);
+      }
+    }
+
+    search.addEventListener("input", filterGames);
+    category.addEventListener("change", filterGames);
+  </script>
+</body>
+</html>
